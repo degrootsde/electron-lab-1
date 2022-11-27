@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
-    <link href="./styles.css" rel="stylesheet">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-    <p>Yoehoeeeee</p>
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <link href="./styles.css" rel="stylesheet">
+  <title>Hello World!</title>
+</head>
+
+<body>
+  <h1>Hello from Electron renderer!</h1>
+  <p>👋</p>
+  <p id="info"></p>
+  <p>using a preload script that exposes node packages to the DOM. Take a look @</p>
+  <ul>
+    <li>renderer.js</li>
+    <li>preload.js</li>
+  </ul>
+  <h2>Notification</h2>
+  <p>
+    A notification is shown using code in renderer.js from the <a
+      href="https://www.electronjs.org/docs/latest/tutorial/notifications" target="_blank">HowTo</a>
+  </p>
+  <!-- You can also require other files to run in this process -->
+  <script src="./renderer.js"></script>
+</body>
+
 </html>
