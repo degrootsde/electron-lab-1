@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow, Menu, Tray} = require('electron')
+
 const path = require('path')
 
 function createWindow () {
@@ -12,11 +13,14 @@ function createWindow () {
     }
   })
 
-  // and load the index.html of the app.
+    // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
+
+  setTray();
+
 }
 
 // This method will be called when Electron has finished
@@ -41,3 +45,22 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+function setTray(){
+    let tray = null
+    app.whenReady().then(() => {
+      
+      tray = new Tray('./assets/icons/cat.png')
+      
+      const contextMenu = Menu.buildFromTemplate([
+        { label: 'Item1', type: 'radio' },
+        { label: 'Item2', type: 'radio' },
+        { label: 'Item3', type: 'radio', checked: true },
+        { label: 'Item4', type: 'radio' }
+      ])
+      
+      tray.setToolTip('This is my Electron application.')
+
+      tray.setContextMenu(contextMenu)
+    })
+}
